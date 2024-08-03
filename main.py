@@ -3,7 +3,10 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 import os
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'downloads'
+app.secret_key = os.environ.get('FLASK_SECRET_KEY', 'defaultsecretkey')
+# app.config['UPLOAD_FOLDER'] = 'downloads'
+DOWNLOAD_FOLDER = os.path.join(os.path.expanduser('~'), 'Downloads')
+app.config['UPLOAD_FOLDER'] = DOWNLOAD_FOLDER
 
 
 if not os.path.exists(app.config['UPLOAD_FOLDER']):
