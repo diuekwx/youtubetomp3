@@ -1,7 +1,13 @@
 from pytube import YouTube
-import tkinter as tk
-from tkinter import filedialog
+from flask import Flask, render_template, request, redirect, url_for, flash
+import os
 
+app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = 'downloads'
+
+
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
 
 def videodownload(url, save_path):
     try:
@@ -22,22 +28,27 @@ def mp3download(url, save_path):
     except Exception as e:
         print(e)
 
-def open_file_dialog():
-    folder = filedialog.askdirectory()
-    if folder:
-        print(f"Selected folder: {folder}")
+@app.route('/')
+def index():
+    return render_template('index.html')
 
-    return folder
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    root.withdraw()
-
-    video_url = input("Please enter a YouTube url: ")
-    save_dir = open_file_dialog()
-
-    if save_dir:
-        print("Started download...")
-        mp3download(video_url, save_dir)
+@app.route('/download', methods =['POST'])
+def download():
+    url = request.form['url']
+    file_type = request.form['file_type']
+    if not url:
+        flash('URL is required!')
+        return redirect(url_for('index'))
+    
+    save_path = app.config['UPLOAD_FOLDER']
+    
+    if file_type == 'mp4':
+        message = videodownload(url, save_path)
     else:
-        print("Invalid save location.")
+        message = mp3download(url, save_path)
+    
+    flash(message)
+    return redirect(url_for('index'))
+
+if __name__ == '__main__':
+    app.run(debug=True)
