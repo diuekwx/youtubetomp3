@@ -8,12 +8,13 @@
 
 </head>
 <body>
+  <div class="container">
     <h1>
-        ya downlaod bideo ... chose if u wanna mp3 or mp4..
+        ya downlaod bideo ... youtube to mp3 ... or mp4
     </h1>
-    <form action="/download" method="post">
-        <label for="url"> youtuber url: </label>
-        <input type="text" id="url" name="url" required> 
+    <form action="/download" method="post" class="form-container">
+        <label for="url" class="youtubeurl"> enter youtuber url: </label>
+        <input type="text" id="url" name="url" class="youtubeurl" required> 
         <br>
         <label for="file_type"> download as  : </label>
         <select id="file_type" name="file_type">
@@ -24,6 +25,8 @@
         <button type="submit">Download</button>
     </form>
     <br>
+  </div>
+    
     <!-- {% with messages = get_flashed_messages() %}
       {% if messages %}
         <ul>

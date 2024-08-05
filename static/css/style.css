@@ -1,4 +1,41 @@
-h1{
-    text-align: center;
-    color: red;
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #444;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+.youtubeurl {
+    margin-bottom: 10px;
+}
+label, input, select, button {
+    display: block;
+    margin: 10px 0;
+}
+
+input, select, button {
+    padding: 10px;
+    font-size: 16px;
 }
