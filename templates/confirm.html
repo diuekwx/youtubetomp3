@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video confirm</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1> dis the right video? </h1>
+        <p id="title"> Title: {{video_details['title']}}</p>
+        <img src="{{video_details['thumbnail']}}" alt="vid_thumbnail" id="thumbnail">
+        <form action="{{ url_for('download') }}" method="post" class="form-container">
+            <input type="hidden" name="url" value="{{ video_details['url'] }}">
+            <label for="file_type">Download as:</label>
+            <select id="file_type" name="file_type">
+                <option value="mp4">MP4</option>
+                <option value="mp3">MP3</option>
+            </select>
+            <button type="submit">confirmed, downlaod!!</button>
+        </form>
+        
+    </div>
+</body>
+</html>

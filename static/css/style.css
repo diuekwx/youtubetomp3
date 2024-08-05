@@ -39,3 +39,13 @@ input, select, button {
     padding: 10px;
     font-size: 16px;
 }
+
+#thumbnail {
+    width: 25vw;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#title{
+    font-size: 25px
+}
